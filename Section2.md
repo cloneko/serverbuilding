@@ -4,7 +4,42 @@
 
 サーバーを構築するたびにOSのインストールからやってられないので事前に用意したCentOS7の環境をVagrantで起動します。
 
-(手順はちょっとまっててね)
+### Vagrantで起動できるCentOS7のイメージを登録
+
+学内にVagrant用CentOS boxを用意してありますので登録して使用します。
+
+    vagrant box add CentOS7 http://172.16.40.7/yonashiro/class/CentOS7-1503.box --force
+
+### Vagrantの初期設定
+
+作業用ディレクトリを作成し、その中で初期設定を行ないます。
+
+   vagrant init
+
+上記コマンドを実行するとVagrantfileというファイルが作成されます。このファイルにVagrantの設定が書かれています。
+そのままではデフォルトのOS(存在しない)を起動してしまうので、CentOS7を起動するようにします。
+
+viでVagrantfileを開き、
+
+    config.vm.box = "base"
+
+と書かれているのを
+
+    config.vm.box = "CentOS7"
+
+とします。ここで指定するものはvagrant box addで指定したものの名前(上記の例だとCentOS7)を指定します。
+
+### 起動
+
+    vagrant up
+
+### 仮想マシンへ接続
+
+    vagrant ssh
+
+### ホストオンリーアダプターの設定
+
+ちょっとまってね。
 
 ## 2-2 Wordpressを動かす(2)
 
