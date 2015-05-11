@@ -15,3 +15,9 @@
 ## 3-1 ansibleでWordpressを動かす(2)を行なう
 
 2-1でWordpressをNginx + PHP + MariaDBでインストールした手順をAnsibleのPlaybookで実行するように記述し、動かしてみてください。
+
+VagrantfileからAnsibleを実行することもできますが、最初は普通に使用することをおすすめします。
+
+### 3-1-2? VagrantfileからAnsibleを呼び出す
+
+ggr(WIP)
