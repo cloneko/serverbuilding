@@ -36,7 +36,7 @@ nmapをインストールし、チェック対象に向かって実行してく�
 
 ### セキュリティスキャナー(Nessus)
 
-セキュリティスキャナーとして定評のあるNessusをインストールして対象に向かって実行してください。
+セキュリティスキャナーとして定評のある[Tenable Network Security社のNessus](http://www.tenable.com/products/nessus-vulnerability-scanner)をインストールして対象に向かって実行してください。
 
 ただしNessusは起動しておくだけでも相当重いので、仮想マシンにインストールしておいて、
 チェックしない時は仮想マシンをシャットダウンしておくといいと思います。
