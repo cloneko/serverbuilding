@@ -69,7 +69,7 @@ Vagrantfileの
 
 の間に
 
-    config.vm.network :private_network, ip:"192.168.56.129"
+    config.vm.network "private_network", ip:"192.168.56.129"
 
 と書くと仮想マシンのNIC2に192.168.56.129のIPアドレスが振られます。
 `config.vm.box = "CentOS7"` の下にでも書くといいと思います。
