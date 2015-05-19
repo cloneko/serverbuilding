@@ -1,14 +1,14 @@
 # Section 2 その他のWebサーバー環境
 
-## 2-1 Vagrantを使用したCentOS 6.5環境の起動
+## 2-1 Vagrantを使用したCentOS 7環境の起動
 
-サーバーを構築するたびにOSのインストールからやってられないので事前に用意したCentOS 6.5の環境をVagrantで起動します。
+サーバーを構築するたびにOSのインストールからやってられないので事前に用意したCentOS 7の環境をVagrantで起動します。
 
-### Vagrantで起動できるCentOS 6.5のイメージを登録
+### Vagrantで起動できるCentOS 7のイメージを登録
 
 USBストレージにVagrant用CentOS boxを用意してありますので登録して使用します。
 
-    vagrant box add CentOS65 コピーしたboxファイル --force
+    vagrant box add CentOS7 コピーしたboxファイル --force
 
 ### Vagrantの初期設定
 
@@ -25,7 +25,7 @@ viでVagrantfileを開き、
 d
 と書かれているのを
 
-    config.vm.box = "CentOS65"
+    config.vm.box = "CentOS7"
 
 とします。ここで指定するものはvagrant box addで指定したものの名前(上記の例だとCentOS7)を指定します。
 
