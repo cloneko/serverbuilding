@@ -17,7 +17,7 @@ USBストレージにVagrant用CentOS boxを用意してありますので登録
    vagrant init
 
 上記コマンドを実行するとVagrantfileというファイルが作成されます。このファイルにVagrantの設定が書かれています。
-そのままではデフォルトのOS(存在しない)を起動してしまうので、CentOS6.5を起動するようにします。
+そのままではデフォルトのOS(存在しない)を起動してしまうので、CentOS 7を起動するようにします。
 
 viでVagrantfileを開き、
 
