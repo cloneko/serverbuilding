@@ -1,0 +1,33 @@
+---
+- hosts: all
+  sudo: yes
+  user: vagrant
+  tasks:
+    - name: install bind-chroot
+      yum: name=bind-chroot
+    - name: copy for chroot(/etc/named*)
+      shell: creates=/var/named/chroot/etc/named.conf cp /etc/named.* /var/named/chroot/etc/
+    - name: copy for chroot(/var/named/)
+      shell: creates=/var/named/chroot/var/named/named.ca cp /var/named/named.* /var/named/chroot/var/named
+    - name: copy for chroot(/var/maned/data)
+      shell: creates=/var/named/chroot/varnamed/data cp -rp /var/named/{data,dynamic,slaves} /var/named/chroot/var/named 
+    - name: setting owner
+      file: path=/var/named/chroot owner=named recurse=yes state=directory
+- hosts: master
+  sudo: yes
+  user: vagrant
+  tasks:
+    - name: Deploy configure file
+      copy: src=master-named.conf dest=/var/named/chroot/etc/named.conf owner=named
+    - name: Deploy zone-file
+      copy: src=zone.cloneko.com dest=/var/named/chroot/var/named/zone.cloneko.com owner=named
+    - name: reload named
+      service: name=named-chroot state=restarted
+- hosts: slave
+  sudo: yes
+  user: vagrant
+  tasks:
+    - name: Deploy configure file
+      copy: src=slave-named.conf dest=/var/named/chroot/etc/named.conf owner=named
+    - name: reload named
+      service: name=named-chroot state=restarted
