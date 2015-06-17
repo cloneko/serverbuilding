@@ -22,7 +22,7 @@ USBストレージにVagrant用CentOS boxを用意してありますので登録
 viでVagrantfileを開き、
 
     config.vm.box = "base"
-d
+
 と書かれているのを
 
     config.vm.box = "CentOS7"
