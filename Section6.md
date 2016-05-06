@@ -28,13 +28,7 @@ Amazon Elastic Computing Cloud(EC2)を使用してWordpressが動作するサー
 
 AMIMOTOのWordpressを起動してWordpressが見れることを確認する。
 
-## 6-3 Route53
-
-Route53はAWSが提供するDNSサービス。
-
-5-1で作ったDNSの情報をRoute53に突っ込んでみよう。
-
-## 6-4 S3
+## 6-3 S3
 
 S3はSimple Storage Service。その名の通り、ファイルを保存し、(状況によっては)公開するサービス。
 
@@ -42,7 +36,7 @@ S3はSimple Storage Service。その名の通り、ファイルを保存し、(�
 
 S3にアップロードする際にはAWSコマンドラインインターフェイスを使ってね。
 
-## 6-5 CloudFront
+## 6-4 CloudFront
 
 CloudFrontはCDNサービスです。CDNって何って?ggrましょう(ちゃんと講義では説明するので聞いてね)。
 
@@ -50,19 +44,12 @@ CloudFrontはCDNサービスです。CDNって何って?ggrましょう(ちゃ�
 
 また、CloudFrondを経由することで、地域ごとにアクセス可能にしたり不可にしたりできるので、それを試してみましょう。
 
-## 6-6 RDS
-
-RDSは…MySQLっぽい奴です。
-
-RDSを立ち上げて、6-1で作ったAMIのWordpressのDBをRDSに向けてみよう。
-
-## 6-7 ELB
+## 6-5 ELB
 
 ELBはロードバランサーです。すごいよ。
 
 6-1で作ったAMIを3台ぶんくらい立ち上げてELBに登録し、負荷が割り振られているか確認してみよう。
 
-## 6-8 API叩いてみよう
+## 6-6 AWS Lambda
 
-AWSは自分で作ったプログラムからもいろいろ制御できます!
-なんでもいいのでがんばってプログラム書いてみてね(おすすめはSES)。
+WIP
