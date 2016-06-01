@@ -1,0 +1,56 @@
+- hosts: 192.168.33.14
+  remote_user: vagrant
+  sudo: yes
+  vars:
+    mysql_root_password: iamnotatngn
+    mysql_db_password: iamnotatngn
+    wp_user: wordpress
+    wp_password: iamnotatngn
+    wp_db: wordpress 
+    wordpress_file: wordpress-4.5.2-ja.tar.gz
+    wordpress_url: https://ja.wordpress.org/{{ wordpress_file }}
+    document_root: /usr/share/nginx/wordpress
+  tasks:
+    - name: Ping...
+      ping:
+    - name: Nginx Repository
+      yum: name=http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm state=present
+    - name: Nginx/PHP/MariaDB Install
+      yum: name={{ item }} state=latest
+      with_items:
+        - nginx
+        - php
+        - php-mbstring
+        - php-pear
+        - php-fpm
+        - php-mysql
+        - mariadb
+        - mariadb-server
+        - MySQL-python
+    - name: Unarchive Wordpress
+      unarchive: src={{ wordpress_url }} copy=no dest=/usr/share/nginx/ owner=nginx group=nginx creates={{ document_root }}
+    - name: Setting Wordpress
+      copy: src=wordpress/wp-config.php dest={{ document_root }}/wp-config.php owner=nginx group=nginx
+    - name: Setting Nginx
+      copy: src=nginx/default.conf dest=/etc/nginx/conf.d/default.conf
+      notify: restart php-fpm
+    - name: Setting php-fpm
+      copy: src=php-fpm/www.conf dest=/etc/php-fpm.d/www.conf
+      notify: restart php-fpm
+    - name: Starting Server(Nginx/php-fpm/MariaDB)
+      service: name={{ item }} state=started enabled=yes
+      with_items:
+        - mariadb
+        - php-fpm
+        - nginx
+    - name: Create Database for Wordpress
+      mysql_db: name={{ wp_db }} state=present encoding=UTF8
+    - name: Create Database user for Wordpress
+      mysql_user: name={{ wp_user }} password={{ wp_password }} priv={{ wp_db }}.*:ALL host=localhost
+
+  handlers:
+    - name: restart php-fpm
+      service: name={{ item }} state=restarted
+      with_items:
+        - php-fpm
+        - nginx
